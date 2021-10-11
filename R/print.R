@@ -1,31 +1,19 @@
-#' print
+#' Print for a linreg object
 #'
-#' @param results Argument
-#' @param ... Additional Argument
-#'
-#' @export
-#'
+#' @param x An object of class linreg
+#' @param ... Additional arguments that we don't use
 #' @examples
-#' mod <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
-#' print(mod)
+#' fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
+#' print(fit)
+#' @export
 
+print.linreg = function(x, ...) {
 
-print<- function(results) UseMethod("print")
-
-print.linreg <- function(results, ...) {
-  cat("Call: \n")
-  print(results$Call)
+  cat("Call:\n")
+  print(x[["call"]])
   cat("\nCoefficients: \n")
-  print(results$Regression_coefficient)
+  print(x[["regression_coefficient"]])
+
 }
 
-
-# print.summary.linreg <- function(x, ...)
-# {
-#   cat("Call:\n")
-#   print(x$Call)
-#   cat("\n")
-#   printCoefmat(x$coefficients, P.value=TRUE, has.Pvalue=TRUE)
-#   res_std_error <- cat("Residual standard error: ", sqrt(sum(x$residuals^2)/x$degree_of_freedom), "on ",
-#                        x$degree_of_freedom, "degrees of freedom \n")
-# }
+print(linreg(Petal.Length~Species, data = iris))

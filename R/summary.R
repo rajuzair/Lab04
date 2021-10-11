@@ -1,43 +1,35 @@
-#' summary()
+#' Get a summary of a linreg object
 #'
-#' @param results Argument
-#' @param ... Additional Argument
-#'
-#' @return Return the summary of linreq
-#'
-#' @export
-#'
+#' @param object An object of class linreg
+#' @param ... Additional arguments that we don't use
 #' @examples
-#' mod <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
-#' summary(mod)
-
-summary<-function(results,...) UseMethod("summary")
-#' @param results
-#' @title summary
-#' @param ...
-#' @return summary
+#' fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
+#' summary(fit)
 #' @export
-
+#'
+#
 summary.linreg <- function(object, ...) {
 
-  #print(results$vcov)
-   std_error <- sqrt(diag(object$vcov))
-   std_errr<-unname(std_error)
-   #print(std_error)
-   regression_coefficient<-unname(object$Regression_coefficient)
-   t_values<- unname(object$t_values)
-   p_values<-unname(object$p_values)
+   smry<- as.data.frame(object[["regression_coefficient"]])
+   smry[,1]<-round(as.numeric(object[["regression_coefficient"]]), 5)
+   smry[,2]<-round(as.numeric(object[["std_error"]]), 5)
+   smry[,3]<-round(as.numeric(object[["t_values"]]), 3)
+   smry[,4]<-round(as.numeric(object[["p_values"]]), 3)
+   smry[,5]<-sapply(object[["p_values"]],
+                    function(x) if(x<0.001) {"***"}
+                    else if (x<0.01) {"**"}
+                    else if (x<0.05) {"*"}
+                    else if (x<0.1) {"."}
+                    else {""})
+   cat("Call: \n")
+   print(object[["call"]])
+   colnames(smry)<-c("Estimate", "Std. Error", "t value", "Pr(>|t|)", " ")
+   cat("\nCoefficients: \n")
+   print(smry)
+   cat("---\n")
+   cat(paste("Residual standard error: ", round(object[["se"]], 7), "on ",
+       object[["degree_of_freedom"]], "degrees of freedom \n"))
 
-   coefficient = matrix(c(regression_coefficient, std_error, t_values, p_values),
-                        nrow = 3,
-                        ncol = 4,
-                        dimnames = list(c("(Intercept)", "Speciesversicolor", "Speciesvirginica"),
-                                        c("Estimate", "Std. Error", "t values", "p values")))
-   print(coefficient)
+}
 
-   res_std_error <- cat("Residual standard error: ", sqrt(sum(object$Residuals^2)/object$Degree_of_freedom), "on ",
-                        object$Degree_of_freedom, "degrees of freedom \n")
-
-
-
-  }
+summary(linreg(formula = Petal.Length ~ Species, data = iris))

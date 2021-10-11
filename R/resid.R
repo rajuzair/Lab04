@@ -1,18 +1,17 @@
-#' Residual()
+#' Get residuals from a linreg object
 #'
-#' @param results Arguments
-#' @param ... Additional Arguments
-#'
-#' @export
-#'
+#' @param x An object of class linreg
+#' @param ... Additional arguments that we don't use
+#' @description Issue with the resid function: Does not work as resid.linreg for some odd reason. Must mask from stats package
 #' @examples
-#' mod <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
-#' resid(mod)
+#' fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
+#' resid(fit)
+#' @export
 
-resid<-function(results) UseMethod("resid")
+residuals.linreg <- function(x, ...) {
 
-
-resid<- function(results, ...) {
-
-  return(results[["Residuals"]])
+  return(x[["residuals"]])
 }
+
+resid(linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris))
+

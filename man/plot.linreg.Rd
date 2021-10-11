@@ -4,12 +4,12 @@
 \alias{plot.linreg}
 \title{Plots for a linreg object}
 \usage{
-\method{plot}{linreg}(results, ...)
+\method{plot}{linreg}(x, ...)
 }
 \arguments{
-\item{...}{Additional arguments that we don't use}
-
 \item{x}{An object of class linreg}
+
+\item{...}{Additional arguments that we don't use}
 }
 \description{
 Plots for a linreg object

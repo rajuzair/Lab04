@@ -11,37 +11,26 @@
 #' @importFrom here here
 #' @export
 
+plot.linreg <- function(x, ...){
+  df<- data.frame(x[["residuals"]],
+                  x[["fitted_values"]],
+                  x[["Sqrt_std_residuals"]])
 
-plot.linreg<- function(results, ...) {
+  p1<- ggplot2::ggplot(df, ggplot2::aes(y = df[,1], x = df[,2])) +
+    ggplot2::geom_point(shape = 1, size = 5) +
+    ggplot2::stat_summary_bin(fun = median, geom = "line", color = "red")+
+    ggplot2::xlab(paste0("Fitted values \n", "linreg(",deparse(x[["formula"]]),")" )) + ggplot2::ylab("Residuals") +
+    ggplot2::ggtitle("Residuals vs Fitted") + ggplot2::theme(plot.title = element_text(hjust = 0.5))
 
+  t<- grid::roundrectGrob()
 
-  df_1 <- data.frame(results$Fitted_values, results$Residuals)
+  p2<- ggplot2::ggplot(df, ggplot2::aes(y = df[,3], x = df[,2])) +
+    ggplot2::geom_point(shape = 1, size = 5) +
+    ggplot2::stat_summary_bin(fun = mean, geom = "line", color = "red") +
+    ggplot2::xlab(paste0("Fitted values \n", "linreg(",deparse(x[["formula"]]),")" )) + ggplot2::ylab(expression(sqrt("Standardized residuals"))) +
+    ggplot2::ggtitle("Scale-Location") + ggplot2::theme(plot.title = element_text(hjust = 0.5))
 
-  p1 <- ggplot(df_1, aes(x = df_1[,1], y = df_1[,2])) +  # ggplot2::ggplot
-    geom_point(shape = 1, size = 5) +
-    stat_summary_bin(fun = median, geom = "line", color = "red")+
-    xlab(paste0("Fitted values \n", "linreg(",deparse(results[["Formula"]]),")" )) + ylab("Residuals") +
-    ggtitle("Residuals vs Fitted")+
-    theme(plot.title= element_text(hjust = 0.5), axis.line = element_line((color='black')), plot.background = element_blank(),
-          panel.grid = element_blank())
-
-
-
-  # Standardized residual
-  std_res <- results$Residuals/sqrt(results$Residual_variance)
-
-  df_2 <- data.frame(results$Fitted_values, sqrt(abs(std_res)))
-  p2 <- ggplot(df_2, aes(x = df_2[,1], y = df_2[,2])) +
-    geom_point(shape = 1, size = 5) +
-    stat_summary_bin(fun = mean, geom = "line", color = "red") +
-    xlab(paste0("Fitted values \n", "linreg(",deparse(results[["Formula"]]),")" )) + ylab(expression(sqrt("Standarized Residuals"))) +
-    ggtitle("Scale-Location")+
-    theme(plot.title= element_text(hjust = 0.5), axis.line = element_line((color='black')), plot.background = element_blank(),
-          panel.grid = element_blank())
-
-  graph <- list(p1,p2)
-  return(graph)
-
+    gridExtra::grid.arrange(p1, p2, heights = c(0.55, 0.55, 0.06))
 }
 
-
+#plot(linreg(formula = Petal.Length ~ Species, data = iris))

@@ -2,13 +2,19 @@
 % Please edit documentation in R/summary.R
 \name{summary.linreg}
 \alias{summary.linreg}
-\title{summary}
+\title{Get a summary of a linreg object}
 \usage{
 \method{summary}{linreg}(object, ...)
 }
-\value{
-summary
+\arguments{
+\item{object}{An object of class linreg}
+
+\item{...}{Additional arguments that we don't use}
 }
 \description{
-summary
+Get a summary of a linreg object
+}
+\examples{
+fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
+summary(fit)
 }

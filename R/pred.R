@@ -1,18 +1,13 @@
-#' Pred()
+#' Get fitted values from a linreg object
 #'
-#' @param results Aurgument
-#' @param ... Additional Argument
-#'
-#' @return
-#' @export
-#'
+#' @param x An object of class linreg
+#' @param ... Additional arguments that we don't use
 #' @examples
-#' mod <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
-#' pred(mod)
+#' fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
+#' pred(fit)
+#' @export
 
-pred<-function(results) UseMethod("pred")
-
-
-pred <- function(results, ...) {
-  return(results[["Fitted_values"]])
+pred <- function(x, ...) {
+  return(x[["fitted_values"]])
 }
+#pred(linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris))
