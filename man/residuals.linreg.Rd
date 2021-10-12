@@ -2,19 +2,19 @@
 % Please edit documentation in R/resid.R
 \name{residuals.linreg}
 \alias{residuals.linreg}
-\title{Get residuals from a linreg object}
+\title{This function is returning the Residuals form linreg}
 \usage{
-\method{residuals}{linreg}(x, ...)
+\method{residuals}{linreg}(object, ...)
 }
 \arguments{
-\item{x}{An object of class linreg}
+\item{object}{An object}
 
-\item{...}{Additional arguments that we don't use}
+\item{...}{Additional arguments}
 }
 \description{
-Issue with the resid function: Does not work as resid.linreg for some odd reason. Must mask from stats package
+This function is returning the Residuals form linreg
 }
 \examples{
-fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
-resid(fit)
+lm<-linreg(formula = Petal.Length ~ Species, data = iris)
+resid(lm)
 }

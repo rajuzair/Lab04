@@ -1,14 +1,14 @@
-#' Get regression coefficients from a linreg object
+#' This function is returning the regression coefficients form linreg
 #'
-#' @param x An object of class linreg
-#' @param ... Additional arguments that we don't use
+#' @param object An object
+#' @param ... Additional arguments
 #' @examples
-#' fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
-#' coef(fit)
+#' lm<-linreg(formula = Petal.Length ~ Species, data = iris)
+#' coef(lm)
 #' @export
 
-coef.linreg <- function(x, ...) {
+coef.linreg <- function(object, ...) {
 
-  return(x[["regression_coefficient"]])
+  return(object[["regression_coefficient"]])
 }
 

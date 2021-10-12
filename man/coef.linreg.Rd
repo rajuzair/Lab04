@@ -2,19 +2,19 @@
 % Please edit documentation in R/coef.R
 \name{coef.linreg}
 \alias{coef.linreg}
-\title{Get regression coefficients from a linreg object}
+\title{This function is returning the regression coefficients form linreg}
 \usage{
-\method{coef}{linreg}(x, ...)
+\method{coef}{linreg}(object, ...)
 }
 \arguments{
-\item{x}{An object of class linreg}
+\item{object}{An object}
 
-\item{...}{Additional arguments that we don't use}
+\item{...}{Additional arguments}
 }
 \description{
-Get regression coefficients from a linreg object
+This function is returning the regression coefficients form linreg
 }
 \examples{
-fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
-coef(fit)
+lm<-linreg(formula = Petal.Length ~ Species, data = iris)
+coef(lm)
 }

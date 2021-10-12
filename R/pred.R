@@ -1,13 +1,13 @@
-#' Get fitted values from a linreg object
+#' This function is returning the fitted values form linreg
 #'
-#' @param x An object of class linreg
-#' @param ... Additional arguments that we don't use
+#' @param object An object
+#' @param ... Additional arguments
 #' @examples
-#' fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
-#' pred(fit)
+#' lm<-linreg(formula = Petal.Length ~ Species, data = iris)
+#' pred(lm)
 #' @export
 
-pred <- function(x, ...) {
-  return(x[["fitted_values"]])
+pred<- function(object, ...) {
+  return(object[["fitted_values"]])
 }
 #pred(linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris))

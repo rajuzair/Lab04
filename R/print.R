@@ -1,13 +1,13 @@
-#' Print for a linreg object
+#' This function printing the regression coefficients form linreg
 #'
-#' @param x An object of class linreg
-#' @param ... Additional arguments that we don't use
+#' @param x An object
+#' @param ... Additional arguments
 #' @examples
-#' fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
-#' print(fit)
+#' lm<-linreg(formula = Petal.Length ~ Species, data = iris)
+#' print(lm)
 #' @export
 
-print.linreg = function(x, ...) {
+print.linreg <- function(x, ...) {
 
   cat("Call:\n")
   print(x[["call"]])
@@ -16,4 +16,4 @@ print.linreg = function(x, ...) {
 
 }
 
-print(linreg(Petal.Length~Species, data = iris))
+#print(linreg(Petal.Length~Species, data = iris))

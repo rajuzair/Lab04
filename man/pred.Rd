@@ -2,19 +2,19 @@
 % Please edit documentation in R/pred.R
 \name{pred}
 \alias{pred}
-\title{Get fitted values from a linreg object}
+\title{This function is returning the fitted values form linreg}
 \usage{
-pred(x, ...)
+pred(object, ...)
 }
 \arguments{
-\item{x}{An object of class linreg}
+\item{object}{An object}
 
-\item{...}{Additional arguments that we don't use}
+\item{...}{Additional arguments}
 }
 \description{
-Get fitted values from a linreg object
+This function is returning the fitted values form linreg
 }
 \examples{
-fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
-pred(fit)
+lm<-linreg(formula = Petal.Length ~ Species, data = iris)
+pred(lm)
 }

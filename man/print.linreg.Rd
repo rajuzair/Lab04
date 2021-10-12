@@ -2,19 +2,19 @@
 % Please edit documentation in R/print.R
 \name{print.linreg}
 \alias{print.linreg}
-\title{Print for a linreg object}
+\title{This function printing the regression coefficients form linreg}
 \usage{
 \method{print}{linreg}(x, ...)
 }
 \arguments{
-\item{x}{An object of class linreg}
+\item{x}{An object}
 
-\item{...}{Additional arguments that we don't use}
+\item{...}{Additional arguments}
 }
 \description{
-Print for a linreg object
+This function printing the regression coefficients form linreg
 }
 \examples{
-fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
-print(fit)
+lm<-linreg(formula = Petal.Length ~ Species, data = iris)
+print(lm)
 }

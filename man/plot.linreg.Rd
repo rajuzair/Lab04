@@ -2,19 +2,20 @@
 % Please edit documentation in R/plot.R
 \name{plot.linreg}
 \alias{plot.linreg}
-\title{Plots for a linreg object}
+\title{This function is being used to plot regression coefficients values form linreg}
 \usage{
 \method{plot}{linreg}(x, ...)
 }
 \arguments{
-\item{x}{An object of class linreg}
+\item{x}{An object}
 
-\item{...}{Additional arguments that we don't use}
+\item{...}{Additional arguments}
 }
 \description{
-Plots for a linreg object
+This function is being used to plot regression coefficients values form linreg
 }
 \examples{
-fit <- linreg(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
-plot(fit)
+lm<-linreg(formula = Petal.Length ~ Species, data = iris)
+plot(lm)
+
 }
