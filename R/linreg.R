@@ -34,7 +34,6 @@ linreg <- function(formula, data) {
   residuals<-as.numeric(qr.resid(QR,y))
 
   # calculate the degrees of freedom (df)
-  #df <- nrow(X) - ncol(X)
   n<-nrow(data)
   p<-ncol(X)
   df<-n-p
@@ -63,6 +62,7 @@ linreg <- function(formula, data) {
   vcov<-sigma2*chol2inv(QR$qr)
   std_error <- sqrt(diag(vcov))
 
+  # catch call
   call <- match.call()
 
   results <- list(
